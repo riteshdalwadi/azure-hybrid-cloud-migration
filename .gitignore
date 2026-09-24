@@ -1,0 +1,13 @@
+# Never commit credentials, configuration exports or Terraform state
+.env
+.env.*
+*.pem
+*.pfx
+*.key
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+.terraform/
+credentials*
+secrets*
