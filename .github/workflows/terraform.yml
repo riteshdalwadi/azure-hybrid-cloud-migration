@@ -1,0 +1,42 @@
+
+name: Terraform Validation
+
+on:
+  push:
+    paths:
+      - "infra/**"
+      - ".github/workflows/terraform.yml"
+  pull_request:
+    paths:
+      - "infra/**"
+      - ".github/workflows/terraform.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  terraform:
+    name: Validate Terraform
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: infra
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.8"
+
+      - name: Check formatting
+        run: terraform fmt -check -recursive
+
+      - name: Initialize Terraform
+        run: terraform init -backend=false
+
+      - name: Validate configuration
+        run: terraform validate
