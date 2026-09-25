@@ -1,0 +1,18 @@
+
+//
+// Azure Backup failures
+// Requires supported backup diagnostic
+// events in the AzureDiagnostics table.
+//
+
+AzureDiagnostics
+| where TimeGenerated > ago(7d)
+| where Category == "AzureBackupReport"
+| where OperationName contains "Backup"
+| where ResultType =~ "Failed"
+| project
+    TimeGenerated,
+    Resource,
+    OperationName,
+    ResultType
+| order by TimeGenerated desc
