@@ -8,7 +8,7 @@ A personal architecture portfolio demonstrating a fictional enterprise migration
 
 ## Architecture
 
-![Hybrid Azure Architecture](diagrams/hybrid-architecture.svg)
+[View Hybrid Azure Architecture](diagrams/hybrid-architecture.md)
 
 ## Project Highlights
 
